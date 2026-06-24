@@ -1,12 +1,14 @@
-# Используем официальный образ Python
 FROM python:3.11-slim
-# Указываем рабочую директорию
+
 WORKDIR /app
-# Копируем все файлы проекта внутрь
-COPY . /app
-# Устанавливаем библиотеки
+
+# Копируем зависимости и устанавливаем их
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-# Команда для запуска сервера (Hugging Face ожидает
-порт 7860)
-CMD ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--
-port", "7860"]
+
+# Копируем исходный код
+COPY src/ ./src/
+COPY models/ ./models/
+
+# Команда для запуска сервера (Hugging Face ожидает порт 7860)
+CMD ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "7860"]

@@ -41,7 +41,7 @@ jobs:
           cp requirements.txt space_repo/requirements.txt
           cp Dockerfile space_repo/Dockerfile
 
-          # ❗️ ЖЕЛЕЗОБЕТОННАЯ ОЧИСТКА МУСОРА:
+          # ❗️ЖЕЛЕЗОБЕТОННАЯ ОЧИСТКА МУСОРА:
           # Ищем и удаляем файлы mlflow.db и кэш __pycache__ во всех вложенных папках
           find space_repo -name "mlflow.db" -type f -delete
           find space_repo -name "__pycache__" -type d -exec rm -rf {} +
